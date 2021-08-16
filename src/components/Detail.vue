@@ -11,7 +11,7 @@
                 <p class="writer">by. {{item.writer}}</p>
             </div>
             <div class="price_date">
-                <p class="price">{{addComma(item.price)}} 원</p>
+                <p class="price">{{addComma(item.price)}} dollar</p>
                 <p class="date">{{moment(item.date).format(' Y. M. D')}}</p>
             </div>
             <div class="divider"></div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <p v-if="feedback" class="red-text">{{feedback}}</p>
-            <a class="waves-effect waves-light btn deep-orange lighten-1 adding_btn" @click="addingList">추가하기</a>
+            <a class="waves-effect waves-light btn deep-orange lighten-1 adding_btn" @click="addingList">Add</a>
 <!--listing items-->
             <div class="listing" v-if="listing_item">
                 <div class="divider"></div>
@@ -100,13 +100,13 @@
                         <td>{{addComma(total)}}</td>
                     </tr>
                 </table>
-                <p class="listing_reset" @click="resetList">선택 초기화</p>
+                <p class="listing_reset" @click="resetList">Formart selection</p>
                 <p class="hide">{{item.id}}</p>
                 <!-- <p class="hide">{{user.id}}</p> -->
             </div>
             <div class="icons">
-                <!-- <a class="waves-effect waves-light btn deep-orange lighten-1" @click="addWish">찜하기</a> -->
-                <a class="waves-effect waves-light btn deep-orange lighten-1" @click="addCart">장바구니에 담기</a>
+                <!-- <a class="waves-effect waves-light btn deep-orange lighten-1" @click="addWish">select</a> -->
+                <a class="waves-effect waves-light btn deep-orange lighten-1" @click="addCart">add cart</a>
             </div>
                   
         </div>
@@ -215,7 +215,7 @@ export default {
             this.feedback=null
             this.total = this.item.price * this.quantityValue
         } else {
-            this.feedback = ' 원하시는 색상, 사이즈, 수량을 선택해주세요.'
+            this.feedback = 'Select color, size, quantity please..'
         }
     },
     resetList(){
@@ -244,7 +244,7 @@ export default {
             this.$swal({
                 position: 'center',
                 type: 'success',
-                title: '장바구니 담기 완료',
+                title: 'Add Cart complete',
                 showConfirmButton: false,
                 timer: 1000
             })
@@ -254,7 +254,7 @@ export default {
             })
 
         }else {
-            this.feedback= '장바구니 담기 실패. Try it again Please!'
+            this.feedback= 'Failed Add Cart. Try it again Please!'
         }
     },
     addWish(){        
@@ -266,7 +266,7 @@ export default {
             this.$swal({
                 position: 'center',
                 type: 'success',
-                title: '찜 완료',
+                title: 'Wish Complete',
                 showConfirmButton: false,
                 timer: 1000
             })

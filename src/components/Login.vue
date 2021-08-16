@@ -37,13 +37,13 @@ export default {
               firebase.auth().signInWithEmailAndPassword(this.email, this.password)
               .then(cred => {
                   //console.log(cred.user)
-                  this.$router.push({name: 'Index'})//로그인완료된 후에는 메인페이지이동
+                  this.$router.push({name: 'Index'})//
               }).catch(err => {
                   this.feedback = err.message
               })
-              this.feedback = null;//feedback 초기화
+              this.feedback = null;//feedback formart
           }else{
-              this.feedback = '아이디와 비밀번호를 입력해주세요.'
+              this.feedback = 'Insert ID and password.'
           }
       }
   }

@@ -7,11 +7,11 @@
       </div>
     </div>
     <h2>Item List</h2>
-    <p class="item_quantity">총 <span>{{items.length}}</span>개의 상품</p>
+    <p class="item_quantity">Total <span>{{items.length}}</span>products</p>
     <div class="sort_ed">
       <div class="sort">
-        <a href="#" @click="sortByDate()">최신순</a>
-        <a href="#" @click="sortByPrice()">가격순</a>
+        <a href="#" @click="sortByDate()">Latest</a>
+        <a href="#" @click="sortByPrice()">Price</a>
       </div>
       <div class="edit_delete">
         <a href="#" @click="editbtn=true">Edit</a>
@@ -96,7 +96,7 @@ export default {
       this.search_data = ''
     },
     /***sorting***/
-    sortByPrice(){//정렬 제대로 안됨. 
+    sortByPrice(){//
       console.table(this.items);
       this.items.sort((a,b)=> parseInt(a.price) < parseInt(b.price) ? -1 : parseInt(a.price) > parseInt(b.price) ? 1 : 0)
     },
@@ -116,7 +116,7 @@ export default {
          this.$swal({
             position: 'center',
             type: 'success',
-            title: '삭제 완료',
+            title: 'Delete complete',
             showConfirmButton: false,
             timer: 1000
         })

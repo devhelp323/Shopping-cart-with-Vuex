@@ -23,7 +23,7 @@ let app = null;
 // })
 
 
-firebase.auth().onAuthStateChanged(() => { //로그인, 로그아웃 등의 정보를 받은 후에 웹을 표시하기 위해 firebase가 initialized 된 후 화면이 나타나도록 설정. 
+firebase.auth().onAuthStateChanged(() => { //
     //init app if not already created
     if (!app) {
         app = new Vue({

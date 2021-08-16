@@ -92,7 +92,7 @@ export default {
                   console.log('success!!')
               })
           }else{
-              this.feedback = '댓글 내용을 입력해주세요.'
+              this.feedback = 'Please insert content.'
           }
       }
 },

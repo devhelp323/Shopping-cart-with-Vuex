@@ -1,7 +1,7 @@
 <template>
   <div class="cart container">
     <h2 @click="checkItems"> {{user.id}}'s Cart </h2>
-    <p class="item_quantity">총 <span>{{cartitems.length}}</span>개의 상품</p>
+    <p class="item_quantity">total <span>{{cartitems.length}}</span>product</p>
 
     <table class="cart_table">
         <tr class="table title">
@@ -26,11 +26,11 @@
     <div class="result">
       <table>
         <tr>
-          <th>총 수량</th>
+          <th>total amount</th>
           <td>{{quantitySum()}}</td>
         </tr>
         <tr>
-          <th>총 금액</th>
+          <th>total price</th>
           <td>{{addComma(priceSum())}}</td>
         </tr>
       </table>
@@ -59,8 +59,8 @@ export default {
   created(){
     //fetch data from the firestore
     db.collection('cartitems').get()
-    .then(snapshot =>{//컬렉션 하위 문서목록지칭함.
-      snapshot.forEach(doc =>{//문서목록중 doc 하나하나에 실행하기.
+    .then(snapshot =>{//
+      snapshot.forEach(doc =>{//
         //console.log(doc.data(), doc.id);
         let cartitem = doc.data()
         cartitem.id =  doc.id
@@ -99,19 +99,19 @@ export default {
         return num.toString().replace(regexp, ',')
     },
     deleteCartitem(id){ 
-        var result = confirm('장바구니 목록에서 삭제하시겠습니까?')
+        var result = confirm('Delete from cart?')
         if(result){
-        db.collection('cartitems').doc(id).delete() //이걸로 db에선 지워짐. 
+        db.collection('cartitems').doc(id).delete() //delete form db. 
         .then(() =>{
           this.$swal({
             position: 'center',
             type: 'success',
-            title: '삭제 완료',
+            title: 'Delete complete',
             showConfirmButton: false,
             timer: 1000
           })
           this.cartitems = this.cartitems.filter(cartitem =>{
-            return cartitem.id !=id //deleteSmoothie에서 보낸 인자 id와 아이디가 일치하지 않는다면 (ture가된다면,)리스트에 남기자.
+            return cartitem.id !=id //
           })
         })
        }      

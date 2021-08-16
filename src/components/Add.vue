@@ -141,16 +141,16 @@ export default {
       })
   },
   methods: {
-    Additem(){ //form의 버튼을 누르면 자동으로 이 submit이 실행되나봄.
+    Additem(){ //
           if(this.title && this.price && this.content){
               this.feedback=null
               //create a slug
               this.slug = slugify(this.title, {
                   replacement: '-',
-                  remove: /[$*_+~.()'"!\-:@]/g,//globally하게 지움.
-                  lower: true //소문자로하기.
+                  remove: /[$*_+~.()'"!\-:@]/g,//globally.
+                  lower: true //lowercase.
               })
-              console.log(this.slug);//slug확인해보기
+              console.log(this.slug);//check slug
  
               db.collection('items').add({
                 title: this.title,
@@ -168,17 +168,17 @@ export default {
                 this.$swal({
                     position: 'center',
                     type: 'success',
-                    title: '상품등록 완료',
+                    title: 'regist Product complete',
                     showConfirmButton: false,
                     timer: 1000
                  })
-                 this.$router.push({ name: 'Index'})//메인으로 리다이렉트
+                 this.$router.push({ name: 'Index'})//
               }).catch(err => {
                   console.log(err);
               })
 
           }else {
-              this.feedback= '상품정보를 입력해주세요!'
+              this.feedback= 'Insert product infomaion please!'
           }
       },
   }

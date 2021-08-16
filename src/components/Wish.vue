@@ -63,19 +63,19 @@ export default {
       return num.toString().replace(regexp, ',')
     },
     deleteWishitem(id){ 
-        var result = confirm('찜 목록에서 삭제하시겠습니까?')
+        var result = confirm('Would you like to delete from with list?')
         if(result){
-        db.collection('wishitems').where('slug','==',item.sulg).delete() //이걸로 db에선 지워짐. 
+        db.collection('wishitems').where('slug','==',item.sulg).delete() //delete from db
         .then(() =>{
           this.$swal({
             position: 'center',
             type: 'success',
-            title: '삭제 완료',
+            title: 'delete complete',
             showConfirmButton: false,
             timer: 1000
           })
           this.items = this.items.filter(cartitem =>{
-            return wishtem.slug !=item.slug //deleteSmoothie에서 보낸 인자 id와 아이디가 일치하지 않는다면 (ture가된다면,)리스트에 남기자.
+            return wishtem.slug !=item.slug //
           })
         })
         }
@@ -95,8 +95,8 @@ export default {
     })
 
     db.collection('wishitems').get()
-    .then(snapshot =>{//컬렉션 하위 문서목록지칭함.
-      snapshot.forEach(doc =>{//문서목록중 doc 하나하나에 실행하기.
+    .then(snapshot =>{//
+      snapshot.forEach(doc =>{//
         //console.log(doc.data(), doc.id);
         let wishitem = doc.data()
         wishitem.id =  doc.id
@@ -105,7 +105,7 @@ export default {
     })
 
     // db.collection('items').get()
-    // .then(querySnapshot =>{//컬렉션 하위 문서목록지칭함.
+    // .then(querySnapshot =>{//
     //   querySnapshot.forEach(doc =>{
     //     if(doc.slug == this.wishitems.item_slug && this.wishitems.user == this.user.alias){
     //       let item = doc.data()

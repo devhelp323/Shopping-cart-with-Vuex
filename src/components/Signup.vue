@@ -40,28 +40,28 @@ export default {
   },
   methods: {
       signup(){
-        if(this.alias && this.email &&this.password){//세 값이 입력된다면
-            //slugify로 만들어서 아이디로 구분할 것. 
+        if(this.alias && this.email &&this.password){//
+ 
             this.slug = slugify(this.alias, {
                 replacement : '-',
                 remove: /[$*_+~.()'"!\-:@]/g,
                 lower: true
             })
-            //이 별명이 이미 사용된건지 확인하는 절차 필요. 
+
             let ref = db.collection('users').doc(this.slug)
             ref.get().then(doc => {
-                if(doc.exists){//doc이 존재한다면(=this.slug과 같은 게 있다면)
-                    this.feedback ='이미 사용된 별명입니다.'
+                if(doc.exists){//
+                    this.feedback ='Aleady exist Id.'
                 } else {
-                    //중복되지않는 정보라면, firebase auth에 새롭게 등록하는 절차 진행해야함. 
+
                     firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-                    .then(cred =>{//firebase 5.0 부터는 cred를 인자로 줘야함. 
+                    .then(cred =>{//
                         //console.log(cred.user)
                         ref.set({ //can set some propety to the record
                             alias: this.alias,
                             user_id: cred.user.uid
                         })
-                    }).then(() =>{//리다이렉트하기
+                    }).then(() =>{//redirect into main
                         this.$router.push({name: 'Index'})
                     })
                     .catch(err =>{
@@ -69,11 +69,11 @@ export default {
                         this.feedback = err.message
 
                     })
-                    this.feedback = '등록중입니다. 잠시만 기다려주세요' 
+                    this.feedback = 'Please wait. registering now...' 
                     this.$swal({
                     position: 'center',
                     type: 'success',
-                    title: '회원가입을 축하합니다.',
+                    title: 'Congratulation! Successfully signed up.',
                     showConfirmButton: false,
                     timer: 2000
                  })
@@ -81,7 +81,7 @@ export default {
             })
             //console.log(this.slug);
         } else{
-            this.feedback = "별명을 입력해주세요."
+            this.feedback = "Please insert your ID."
         }
       }
   }
